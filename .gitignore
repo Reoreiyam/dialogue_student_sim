@@ -1,0 +1,16 @@
+# Local datasets and derived annotations
+/data/
+/wh5n9-osfstorage-archive/
+
+# Local model checkpoints and evaluation outputs
+/saved_models/
+/results/
+
+# Local LLM/API caches and temporary batch inputs
+/openai_cache_*.json
+/temp.jsonl
+
+# Python caches
+__pycache__/
+*.py[cod]
+.pytest_cache/

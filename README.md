@@ -64,3 +64,20 @@ Test and evaluate on test set
 ```
 python -m sim_student.testing --student_model eedi-stud-dpo-8b --input_type profile --ks_num
 ```
+
+## Tutoring Chat Log Dataset
+
+The repository also includes a preparation script for the OSF Tutoring Chat
+Log Dataset (ASSISTments/UPchieve-style data). It joins the message, session,
+problem, and sequence tables into the dialogue schema used by this package and
+creates student-level train/validation/test splits:
+
+```
+python scripts/prepare_tutoring_chat_data.py
+```
+
+The resulting files are written to `data/annotated/tutoring_chat/`. Use
+`--dataset tutoring_chat` with the training/testing commands. The large
+`action_logs.csv` is kept as a symlink in `data/raw/tutoring_chat/` because it
+is intended for historical-behavior analysis and is not needed to construct
+the dialogue turns.

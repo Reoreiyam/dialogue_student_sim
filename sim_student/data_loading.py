@@ -48,6 +48,11 @@ def load_train_val_data(dataset: str, annotation_model: str = "gpt-4.1", drop_un
         return train_data, val_data
     if dataset == "eedi":
         return load_eedi_train_val_data()
+    if dataset == "tutoring_chat":
+        train_data = load_annotated_data(dataset, "train", "", drop_unsolvable=False)
+        val_data = load_annotated_data(dataset, "val", "", drop_unsolvable=False)
+        if train_data is not None and val_data is not None:
+            return train_data, val_data
     raise Exception(f"Invalid dataset {dataset}")
 
 def load_test_data(dataset: str, annotation_model: str = "gpt-4.1", drop_unsolvable: bool = True):
@@ -56,6 +61,10 @@ def load_test_data(dataset: str, annotation_model: str = "gpt-4.1", drop_unsolva
         return test_data
     if dataset == "eedi":
         return load_eedi_test_data()
+    if dataset == "tutoring_chat":
+        test_data = load_annotated_data(dataset, "test", "", drop_unsolvable=False)
+        if test_data is not None:
+            return test_data
     raise Exception(f"Invalid dataset {dataset}")
 
 def load_overgenerated_data(dataset: str, split: str, descriptor: str, obj_cols: List[str]) -> Optional[List[Dialogue]]:
